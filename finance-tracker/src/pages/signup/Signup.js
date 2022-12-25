@@ -7,24 +7,16 @@ export default function Signup() {
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, isPending, signup] = useSignup()
+  const { error, isPending, signup } = useSignup()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    useSignup(error, isPending, signup)
+    signup(email, password, displayName)
   }
   return (
     <form onSubmit={handleSubmit} className={styles['signup-form']}>
       <h2>Signup</h2>
-      <label>
-        <span>Name:</span>
-        <input
-          type="text"
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-        />
-      </label>
       <label>
         <span>email:</span>
         <input
@@ -39,6 +31,14 @@ export default function Signup() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+        />
+      </label>
+      <label>
+        <span>Name:</span>
+        <input
+          type="text"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
         />
       </label>
       {!isPending && <button className="btn">Signup</button>}
