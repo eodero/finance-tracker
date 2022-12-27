@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useAuthContext } from '../hooks/useAuthContext'
+import React from "react"
+import { Link } from "react-router-dom"
+import { useAuthContext } from "../hooks/useAuthContext"
 import { useLogout } from '../hooks/useLogout'
+
+// styles
 import styles from './Navbar.module.css'
-
-
 
 export default function Navbar() {
     const { logout } = useLogout()
@@ -13,9 +13,8 @@ export default function Navbar() {
     return (
         <nav className={styles.navbar}>
             <ul>
-                <li className={styles.title}>
-                    myMoney
-                </li>
+                <li className={styles.title}>myMoney</li>
+
                 {!user && (
                     <>
                         <li><Link to="/login">Login</Link></li>
@@ -25,6 +24,7 @@ export default function Navbar() {
 
                 {user && (
                     <>
+                        <li>hello, {user.displayName}</li>
                         <li>
                             <button className="btn" onClick={logout}>Logout</button>
                         </li>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useLogin } from '../../hooks/useLogin'
-import styles from './login.module.css'
 
+// styles
+import styles from "./Login.module.css"
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -12,27 +13,28 @@ export default function Login() {
     e.preventDefault()
     login(email, password)
   }
+
   return (
     <form onSubmit={handleSubmit} className={styles['login-form']}>
-      <h2>Login</h2>
+      <h2>login</h2>
       <label>
         <span>email:</span>
         <input
           type="email"
-          value={email}
           onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
       </label>
       <label>
-        <span>password</span>
+        <span>password:</span>
         <input
           type="password"
-          value={password}
           onChange={(e) => setPassword(e.target.value)}
+          value={password}
         />
       </label>
       {!isPending && <button className="btn">Login</button>}
-      {isPending && <button className="btn" disabled>Loading...</button>}
+      {isPending && <button className="btn" disabled>loading</button>}
       {error && <p>{error}</p>}
     </form>
   )

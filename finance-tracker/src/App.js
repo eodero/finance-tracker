@@ -1,16 +1,15 @@
-import React from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import { useAuthContext } from './hooks/useAuthContext';
+import React from 'react'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { useAuthContext } from './hooks/useAuthContext'
 
-//pages and components
+// pages & components
 import Home from './pages/home/Home'
-import Login from './pages/login/Login';
-import Signup from './pages/signup/Signup';
+import Login from './pages/login/Login'
+import Signup from './pages/signup/Signup'
+import Navbar from './components/Navbar'
 
 function App() {
   const { authIsReady, user } = useAuthContext()
-
 
   return (
     <div className="App">
@@ -22,14 +21,12 @@ function App() {
               {!user && <Redirect to="/login" />}
               {user && <Home />}
             </Route>
-
             <Route path="/login">
               {user && <Redirect to="/" />}
               {!user && <Login />}
-
             </Route>
             <Route path="/signup">
-              {user && <Redirect to="/" />}
+              {user && user.displayName && <Redirect to="/" />}
               {!user && <Signup />}
             </Route>
           </Switch>
@@ -39,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
